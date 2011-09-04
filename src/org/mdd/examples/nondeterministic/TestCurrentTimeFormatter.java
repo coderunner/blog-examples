@@ -3,6 +3,7 @@ package org.mdd.examples.nondeterministic;
 import static org.junit.Assert.* ;
 
 import org.junit.Test;
+import org.testobject.Recorder;
 import org.testobject.TestObject;
 
 public class TestCurrentTimeFormatter
@@ -16,8 +17,8 @@ public class TestCurrentTimeFormatter
 		//Here a test object is used since we don't care if a call to time
 		//accessor is made as long as the output string is all right.
 		TimeAccessor accessor = TestObject.createTestObject(TimeAccessor.class);
-		TestObject.Recorder<TimeAccessor> accessorRecorder =
-			new TestObject.Recorder<TimeAccessor>(accessor);
+		Recorder<TimeAccessor> accessorRecorder =
+			TestObject.createRecorder(accessor);
 		accessorRecorder.record(accessor.getCurrentTime()).andReturn(CURRENT_TIME);
 		
 		CurrentTimeFormatter formatter = new CurrentTimeFormatter();
