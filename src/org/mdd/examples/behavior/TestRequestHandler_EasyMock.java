@@ -69,7 +69,7 @@ public class TestRequestHandler_EasyMock
         reset(request, context, monitoring, store, headers);
         expect(context.getMonitoring()).andReturn(monitoring);
         monitoring.incrementRequestCounter();
-        expect(request.getPath()).andReturn(REQUEST_PATH);
+        expect(request.getPath()).andReturn(REQUEST_PATH).anyTimes();
         expect(request.getHeaders()).andReturn(headers);
         expect(headers.get(CASE_HEADER)).andReturn("Other Value");
         expect(context.getStore()).andReturn(store);

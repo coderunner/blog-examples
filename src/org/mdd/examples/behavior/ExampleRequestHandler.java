@@ -11,7 +11,7 @@ public class ExampleRequestHandler implements RequestHandler
         String result =  context.getStore().get(storeKey);
         
         String caseHeaderValue = request.getHeaders().get("case");
-        if(caseHeaderValue.equals("uppercase"))
+        if(caseHeaderValue != null && caseHeaderValue.equals("uppercase"))
         {
             result = result.toUpperCase();
         }
