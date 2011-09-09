@@ -7,13 +7,12 @@ import java.io.OutputStream;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mdd.examples.logger.Logger.Level;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 
 public class TestStreamLogger
 {
     private static final String LOGGER_NAME = "logger_name";
-    private static final Logger.Level LEVEL = Level.INFO;
+    private static final Level LEVEL = Level.INFO;
     private static final String MESSAGE = "message";
     private StreamLogger logger;
     private OutputStream stream;
@@ -21,34 +20,28 @@ public class TestStreamLogger
     @Before
     public void setup()
     {
-        stream = Mockito.mock(OutputStream.class);
+        stream = mock(OutputStream.class);
         logger = new StreamLogger("logger_name", stream);
     }
     
     @Test
-    public void shouldWriteFormattedMesssageToStream() throws IOException
+    public void shouldWriteFormattedMesssageToStream() throws Exception
     {
-        byte[] expectedStream = (
-                LOGGER_NAME +" - " + LEVEL.toString() + " : " + MESSAGE).getBytes();
-        
         logger.log(Level.INFO, MESSAGE);
-        
-        Mockito.verify(stream).write(expectedStream);
+        verify(stream).write((LOGGER_NAME +" - " + LEVEL + " : " + MESSAGE).getBytes());
     }
 
     @Test
-    public void shouldWriteToStream() throws IOException
+    public void shouldWriteToStream() throws Exception
     {
         logger.log(MESSAGE);
-        
-        Mockito.verify(stream).write(MESSAGE.getBytes());
+        verify(stream).write(MESSAGE.getBytes());
     }
     
     @Test
-    public void shouldIncrementLogCounter()
+    public void shouldCloseStream() throws Exception
     {
-        assertEquals(0, logger.getLogCount());
-        logger.log(Level.INFO, MESSAGE);
-        assertEquals(1, logger.getLogCount());
+        logger.close();
+        verify(stream).close();
     }
 }

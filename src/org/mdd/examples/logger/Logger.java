@@ -2,25 +2,18 @@ package org.mdd.examples.logger;
 
 public abstract class Logger
 {
-    public static enum Level
-    {
-        INFO,
-        WARNING,
-        FATAL
-    };
-    
     private String name;
-    private int logCount = 0;
+    private int logCount;
     
     public Logger(String name)
     {
         this.name = name;
+        logCount = 0;
     }
     
     public void log(Level level, String message)
     {
-        String formattedLog = formatLog(level, message);
-        log(formattedLog);
+        log(formatLog(level, message));
         ++logCount;
     }
     
@@ -29,11 +22,10 @@ public abstract class Logger
         return logCount;
     }
     
-    protected abstract void log(String formattedLog);
-    
-    private String formatLog(Level level, String message)
+    protected String formatLog(Level level, String message)
     {
-        String formattedLog = name + " - "+ level.toString()+" : "+message;
-        return formattedLog;
+        return name + " - "+ level +" : "+message;
     }
+    
+    protected abstract void log(String formattedLog);
 }
