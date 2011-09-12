@@ -30,13 +30,6 @@ public class TestStreamLogger
         logger.log(Level.INFO, MESSAGE);
         verify(stream).write((LOGGER_NAME +" - " + LEVEL + " : " + MESSAGE).getBytes());
     }
-
-    @Test
-    public void shouldWriteToStream() throws Exception
-    {
-        logger.log(MESSAGE);
-        verify(stream).write(MESSAGE.getBytes());
-    }
     
     @Test
     public void shouldCloseStream() throws Exception
