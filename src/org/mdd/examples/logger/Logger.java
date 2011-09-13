@@ -2,24 +2,23 @@ package org.mdd.examples.logger;
 
 public abstract class Logger
 {
-    private String name;
-    private int logCount;
+    private final String name;
+    private int logCount = 0;
     
     public Logger(String name)
     {
         this.name = name;
-        logCount = 0;
+    }
+    
+    public int getLogCount()
+    {
+        return logCount;
     }
     
     public void log(Level level, String message)
     {
         log(formatLog(level, message));
         ++logCount;
-    }
-    
-    public int getLogCount()
-    {
-        return logCount;
     }
     
     protected String formatLog(Level level, String message)

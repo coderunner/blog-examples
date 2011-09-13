@@ -50,5 +50,4 @@ public class TestLogger
         logger.log(LEVEL, MESSAGE);
         assertEquals(1, logger.getLogCount());
     }
-
 }

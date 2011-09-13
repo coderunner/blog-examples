@@ -21,7 +21,7 @@ public class TestStreamLogger
     public void setup()
     {
         stream = mock(OutputStream.class);
-        logger = new StreamLogger("logger_name", stream);
+        logger = new StreamLogger(LOGGER_NAME, stream);
     }
     
     @Test
