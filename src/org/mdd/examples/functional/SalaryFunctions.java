@@ -2,12 +2,17 @@ package org.mdd.examples.functional;
 
 public class SalaryFunctions {
 	
-	public static int computeBonus(Employee employee, float factor) {
+	private final float factor;
+	
+	public SalaryFunctions(float factor) {
+		this.factor = factor;
+	}
+	
+	public int computeBonus(Employee employee) {
 		return Math.round(employee.salary * factor * employee.targetBonus);
 	}
 	
-	public static int getWeeklySalary(Employee employee) {
+	public int getWeeklySalary(Employee employee) {
 		return Math.round(employee.salary / 52f);
 	}
-
 }

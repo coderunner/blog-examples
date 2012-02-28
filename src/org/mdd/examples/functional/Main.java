@@ -10,7 +10,7 @@ public class Main {
 		//static, simple to use, harder for tests
 		//to use only if that is the only way it can be done (e.g. Math.abs())
 		//good to extract duplicated code in unrelated places
-		int bonus = SalaryFunctions.computeBonus(e, 0.67f);
+		int bonus = new SalaryFunctions(0.67f).computeBonus(e);
 		
 		//easy to use and to mock, same object can be used for many employees
 		boolean isEligible = new BenefitsFunctions().isEligibleForBenefits(e);
